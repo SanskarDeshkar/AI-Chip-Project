@@ -21,17 +21,17 @@ This is a Python-based project analyzing the stock market relationship between s
 
 After analyzing 4 years of daily returns, I found that the highest correlation usually falls between two chip manufacturers. For example, NVIDIA and AMD have the highest correlation, at r = 0.75. These results strongly imply that the market views the chip manufacturers and the hardware OEMs as one giant interconnected business, where a rise in one correlates to a rise in another.
 
-`![Correlation Heatmap](correlation_heatmap.png)`
+![Correlation Heatmap](correlation_heatmap.png)
 
 ### 2. Lead/Lag Effect
 
 To test for a predictive relationship, I shifted just the semiconductor supplier data forward by one day. My analysis found that every correlation between a lagged chip manufacturer and a hardware OEM was negative, but close to 0. The lowest correlations were between a lagged and unlagged chip manufacturer (lagged Qualcomm & unlagged NVIDIA had a correlation of r = 0.13). These results seemingly imply that there is little to no predictive relationship between a chip supplier's stock yesterday and a hardware OEM's stock today.
 
-`![Lagged Correlation Heatmap](lagged_correlation_heatmap.png)`
+![Lagged Correlation Heatmap](lagged_correlation_heatmap.png)
 
 ### 3. Performance & Growth
 
 These charts show the cumulative growth of $1 invested in both semiconductor suppliers and hardware OEMs. The clear winner in the chip manufacturers is NVIDIA (ending at around $23 for each $1 invested), while the clear winner in the hardware OEMs is Dell (ending at a little less than $5 for each $1 invested). The losing chip supplier is Intel and the losing device manufacturer is Samsung (both making barely over $1 for each $1 invested). Both growth charts share a similar patterns, with a low start, small dip in early 2020, constant flucutation, and an end with a single stock finishing way above the others.
 
-`![Chip Manufacturer Growth Chart](chip_mfrs_growth_chart.png)`
-`![Hardware OEMs Growth Chart](hardware_oems_growth_chart.png)`
+![Chip Manufacturer Growth Chart](chip_mfrs_growth_chart.png)
+![Hardware OEMs Growth Chart](hardware_oems_growth_chart.png)
