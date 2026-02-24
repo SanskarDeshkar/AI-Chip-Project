@@ -42,3 +42,17 @@ print("Chart saved as momentum_strategy.png")
 # printing the final results
 print(f"Final Buy & Hold: ${df['Benchmark_Cumulative_Return'].iloc[-1]:.2f}")
 print(f"Final Momentum Strategy: ${df['Strategy_Cumulative_Return'].iloc[-1]:.2f}")
+
+# calculating max drawdown for buy and hold
+rolling_max_benchmark = df['Benchmark_Cumulative_Return'].cummax()
+drawdown_benchmark = (df['Benchmark_Cumulative_Return'] - rolling_max_benchmark) / rolling_max_benchmark
+max_drawdown_benchmark = drawdown_benchmark.min()
+
+# calcuating max drawdown for momentum strategy
+rolling_max_strategy = df['Strategy_Cumulative_Return'].cummax()
+drawdown_strategy = (df['Strategy_Cumulative_Return'] - rolling_max_strategy) / rolling_max_strategy
+max_drawdown_strategy = drawdown_strategy.min()
+
+# printing final risk results
+print(f"Max Drawdown Buy & Hold: {max_drawdown_benchmark:.2%}")
+print(f"Max Drawdown Momentum Strategy: {max_drawdown_strategy:.2%}")
