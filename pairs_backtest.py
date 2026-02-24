@@ -41,8 +41,8 @@ print(f"$1 Pairs Trading Strategy: ${df['Strategy_Cumulative_Return'].iloc[-1]:.
 
 # creating a chart for visual comparison of the cumulative returns of the strategy and the benchmark
 plt.figure(figsize=(12, 6))
-plt.plot(df.index, df['Benchmark_Cumulative_Return'], label='Buy & Hold AMD', color='blue')
-plt.plot(df.index, df['Strategy_Cumulative_Return'], label='Pairs Trading (Z-Score)', color='orange')
+plt.plot(df['Benchmark_Cumulative_Return'], label='Buy & Hold AMD', color='blue')
+plt.plot(df['Strategy_Cumulative_Return'], label='Pairs Trading (Z-Score)', color='orange')
 plt.title('Cumulative Returns of Pairs Trading Strategy vs Buy & Hold')
 plt.legend()
 plt.savefig('pairs_trading_strategy.png')
