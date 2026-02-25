@@ -2,7 +2,7 @@
 
 This is a Python-based project analyzing the stock market relationship between semiconductor suppliers and the hardware original equipment manufacturers (OEMs for short) that use them in their devices.
 
-**Project Question:** How correlated are chip suppliers (like Nvidia, AMD) to hardware makers (like Apple, Dell)? Is there a "lead/lag" effect, where chip stock performance can predict hardware stock performance?
+**Project Question:** How correlated are chip suppliers (like Nvidia, AMD) to hardware makers (like Apple, Dell)? Is there a "lead/lag" effect, and can these relationships be used using statistical arbitrage or momentum-based algorithmic trading strategies?
 
 ---
 
@@ -35,3 +35,30 @@ These charts show the cumulative growth of $1 invested in both semiconductor sup
 
 ![Chip Manufacturer Growth Chart](chip_mfrs_growth_chart.png)
 ![Hardware OEMs Growth Chart](hardware_oems_growth_chart.png)
+
+### 4. Strategy Backtest 1: Statistical Arbitrage (Pairs Trading)
+
+Given the high same-day correlation between NVIDIA and AMD (r = 0.75), I hypothesized that a mean-reversion "Pairs Trading" strategy would be more profitable than buying and holding the stock. I built a backtester to track the price spread between the two assets, triggering a buy signal (using a Z-score > 1.0) when AMD became statistically underpriced compared to NVDA. 
+
+**Result:** The strategy failed to beat a simple Buy & Hold benchmark. The data revealed that the 2020-2024 AI semiconductor market was in a strict **Momentum Regime**. The stocks rarely mean-reverted; instead, they experienced occasional spikes. 
+
+![Pairs Performance](pairs_trading_strategy.png)
+
+### 5. Strategy Backtest 2: Trend Following (Momentum)
+
+Recognizing the regime shift from mean-reversion to momentum, I pivoted the algorithm. I designed a Trend-Following strategy using a 50-day Simple Moving Average (SMA) on AMD. The rule I set was to stay invested while the price is above the 50-day SMA, and move to cash when it drops below.
+
+**Result:** In terms of raw total return, the Momentum strategy underperformed Buy & Hold ($1.22 vs $2.77). The lagging nature of the 50-day average caused the algorithm to miss sudden, volatile spikes in AI stock prices.
+
+![Momentum Performance](momentum_strategy.png)
+
+### 6. Risk Management & Capital Preservation (The Quant Pivot)
+
+While the Momentum strategy underperformed in total return, quantitative finance prioritizes **Risk-Adjusted Returns**. I ran a Maximum Drawdown analysis to measure the exact downside risk of both the benchmark and the momentum algorithm.
+
+* **Buy & Hold Max Drawdown:** -54.08%
+* **Momentum Strategy Max Drawdown:** -5.12%
+
+**Conclusion:** During the analyzed period, a Buy & Hold investor suffered a catastrophic 54% loss of portfolio value. The Momentum algorithm successfully identified the market crash and shifted to cash, restricting the absolute worst-case loss to just 5.12%. 
+
+Overall, this project proves that while beating a historic tech bull market in just profits is highly improbable, algorithmic trend-following provides vastly superior downside protection and capital preservation.
