@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # creating a new dataframe to hold the closing prices of the two stocks
-df = pd.read_csv("closing_prices.csv")
+df = pd.read_csv("data/closing_prices.csv")
 
 # making sure dates are in the correct format and set as index
 df['Date'] = pd.to_datetime(df['Date'])
